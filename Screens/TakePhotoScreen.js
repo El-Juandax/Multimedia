@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
+import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import Constants from 'expo-constants';
 import { Camera, CameraType } from 'expo-camera/legacy';
 import * as MediaLibrary from 'expo-media-library';
-import { MaterialIcons } from '@expo/vector-icons';
-
 
 export default function TomarFoto() {
-
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -48,9 +45,8 @@ export default function TomarFoto() {
   };
 
   if (hasCameraPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>Acceso denegado a la camara</Text>;
   }
-
 
   return (
     <View style={styles.container}>
@@ -68,17 +64,26 @@ export default function TomarFoto() {
               paddingHorizontal: 30,
             }}
           >
-            <Button
-              title="Delantera o Posterior"
-              icon="retweet"
+            <Pressable
               onPress={() => {
                 setType(
                   type === CameraType.back ? CameraType.front : CameraType.back
                 );
               }}
-            />
-            <Button
-            title="Flash si/no"
+            >
+              <Image
+                style={{
+                  width: 100,
+                  height: 100,
+                  backgroundColor: 'white',
+                  borderRadius: 100,
+                  borderWidth: 0,
+                }}
+                source={require('../Sources/img/voltearCamara.png')}
+              />
+              
+            </Pressable>
+            <Pressable
               onPress={() =>
                 setFlash(
                   flash === Camera.Constants.FlashMode.off
@@ -86,9 +91,20 @@ export default function TomarFoto() {
                     : Camera.Constants.FlashMode.off
                 )
               }
-              icon="flash"
-              color={flash === Camera.Constants.FlashMode.off ? 'gray' : '#fff'}
-            />
+              style={{
+                borderRadius: 100, backgroundColor: flash === Camera.Constants.FlashMode.off ? 'gray' : 'yellow', borderRadius: 100 }}
+            >
+              <Image
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 100,
+                  borderWidth: 0,
+                }}
+                source={require('../Sources/img/flash.png')}
+              />
+             
+            </Pressable>
           </View>
         </Camera>
       ) : (
@@ -104,15 +120,30 @@ export default function TomarFoto() {
               paddingHorizontal: 50,
             }}
           >
-            <Button
-              title="Re-take"
+            <Pressable
               onPress={() => setImage(null)}
-              icon="retweet"
-            />
-            <Button title="Save" onPress={savePicture} icon="check" />
+            >
+              <Image
+                style={{ width: 100, height: 100, position: 'absolute', bottom: -30, left: 0 }}
+                source={require('../Sources/img/Volver.png')}
+              />
+            </Pressable>
+            <Pressable onPress={savePicture}>
+              <Image
+                style={{ width: 100, height: 100, position: 'absolute', bottom: -30, left: -100 }}
+                source={require('../Sources/img/Guardar.png')}
+              />
+              
+            </Pressable>
           </View>
         ) : (
-          <Button title="Take a picture" onPress={takePicture} icon="camera" />
+          <Pressable onPress={takePicture}>
+            <Image
+              style={{ width: 120, height: 120, position: 'absolute', bottom: -50, right: '34%', backgroundColor: 'white', borderRadius: 100 }}
+              source={require('../Sources/img/camara.png')}
+            />
+            
+          </Pressable>
         )}
       </View>
     </View>
@@ -124,7 +155,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#000',
+    backgroundColor: '#00B8EB',
     padding: 8,
   },
   controls: {

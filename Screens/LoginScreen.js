@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Alert } fro
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const login = () => {
+export const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default login;
+export default Login;

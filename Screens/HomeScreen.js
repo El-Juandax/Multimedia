@@ -13,7 +13,7 @@ const HomeScreen = () => {
         </View>
         <View style={styles.opciones}>
           <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={styles.botonPerfil}><Image style={{width: 120, height: 120}} source={require('../Sources/img/icono.png')}/><Text style={{color: '#005FCB'}}>Perfil</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Fotos')} style={styles.botonGaleria}><Image style={{width: 120, height: 120}} source={require('../Sources/img/galeria.png')}/><Text style={{color: '#005FCB'}}/><Text style={{color: '#005FCB'}}>Galeria</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Fotos')} style={styles.botonGaleria}><Image style={{width: 120, height: 120, position: 'absolute', bottom: '15%'}} source={require('../Sources/img/galeria.png')}/><Text style={{color: '#005FCB'}}/><Text style={{color: '#005FCB'}}>Galeria</Text></TouchableOpacity>
         </View>
         <View style={styles.opciones2}>
           <TouchableOpacity onPress={() => navigation.navigate('Videos')} style={styles.botonPerfil}><Image style={{width: 120, height: 120}} 
